@@ -11,7 +11,7 @@ function displayGif() {
         method: "GET"
     }).then(function (response) {
         var results = response.data;
-        console.log(response.data);
+        // console.log(response.data);
         for (var i = 0; i < results.length; i++) {
             var gifDiv = $("<div>");
             var rating = results[i].rating;
@@ -71,3 +71,6 @@ $("#gif-view").on("click", function () {
     };
 
 })
+
+// Most of the page works except the animate/still gifs. The code related to this are lines 22-24 and 59-70. I tried putting everything in the click function, however eventually that did not turn up anything. 
+// What I believe I could have done was instead "function gifDisplay", it should have been another click function so lines 22-24 could also be functional.
