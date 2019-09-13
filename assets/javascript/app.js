@@ -1,8 +1,6 @@
-var characters = ["mario", "link", "luigi", "pikachu"];
+var characters = ["Mario", "Link", "Luigi", "Pikachu"];
 
 function displayGif() {
-
-    // $("gif-button").on("click", function() {
 
     var character = $(this).attr("data-character");
 
@@ -13,7 +11,7 @@ function displayGif() {
         method: "GET"
     }).then(function (response) {
         var results = response.data;
-        console.log(response);
+        console.log(response.data);
         for (var i = 0; i < results.length; i++) {
             var gifDiv = $("<div>");
             var rating = results[i].rating;
@@ -21,11 +19,10 @@ function displayGif() {
             var gifVideo = $("<img>");
             gifVideo.attr("src", results[i].images.fixed_height.url);
 
+            gifDiv.attr('data-state', 'still');
+            gifDiv.attr('data-still', results[i].images.fixed_height_still.url);
+            gifDiv.attr('data-animate', results[i].images.fixed_height.url);
 
-            // still
-            // animate
-            // state
-            // div
 
             gifDiv.prepend(p);
             gifDiv.prepend(gifVideo);
@@ -59,10 +56,12 @@ $(document).on("click", ".gif-btn", displayGif);
 
 renderButtons();
 
-$(".gif").on("click", function () {
+$("#gif-view").on("click", function () {
+
     var state = $(this).attr("data-state");
+
     if (state === 'still') {
-        var animateURL = $(this).attr(queryURL);
+        var animateURL = $(this).attr("data-animate");
         $(this).attr("src", animateURL);
         $(this).attr("data-state", "animate");
     } else {
@@ -71,21 +70,4 @@ $(".gif").on("click", function () {
 
     };
 
-
 })
-
-// var gifDiv = $("<div class='gif>");
-
-            // console.log(response);
-            // var rating = response.rating;
-
-            // $("#gif-view").empty();
-            // var p = $("<p>").text("Rating: " + rating);
-
-            // gifDiv.append(p);
-
-            // var gifURL = response.Video;
-
-            // var gif = $("<img>").attr("src", gifURL);
-
-            // gifDiv.append(gif);

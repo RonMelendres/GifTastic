@@ -1,0 +1,14 @@
+body{
+    background-image: url(../images/Battlefield.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: darkgray;
+    
+}
+
+h1{
+    text-align: center;
+    padding-top: 20px;
+}
+
